@@ -1,0 +1,196 @@
+
+
+.tweets-container{
+    border: 1px solid rgb(242, 240, 240);
+    margin-top: 0px;
+    display: flex;
+    cursor: pointer;
+}
+
+.tweets-container:hover{
+    background-color: rgb(247, 247, 247);
+    transition: 0.5s;
+}
+
+.tweet-cont-left{
+    margin-top: 0px;
+   margin-left: 2px;
+}
+
+.tweet-top-cont{
+    display: flex;
+    width: 540px;
+    height: 30px;
+    
+    justify-content: space-between;
+}
+
+.tweet-top-details{
+  display: flex;
+  margin-top: -10px;
+  
+}
+
+.tweet-top-details p{
+    margin-top: 18px;
+    margin-left: 5px;
+}
+
+.tweet-profile-pic{
+    width: 40px;
+    height: 40px;
+    border-radius: 25px;
+    padding: 5px;
+    margin-left: 7px;
+    margin-top: 3px;
+}
+
+.verification-sign{
+    width: 18px;
+}
+
+.tweet-name{
+    font-weight: 600;
+}
+
+.tweet-name:hover{
+    text-decoration: underline;
+}
+
+.tweet-nickname, .tweet-date{
+   font-size: 16px;
+   color: rgb(110, 109, 109);
+}
+
+.tweet-date:hover{
+      
+    text-decoration: underline;
+}
+
+.more-options{
+    margin-right: 15px;
+    font-size: 20px;
+    padding: 4px;
+    text-align: center  ;
+}
+
+.more-options:hover{
+    background-color: rgb(228, 241, 249);
+    border-radius: 10px;
+}
+
+.tweet-description{
+   
+   width: 540px;
+
+}
+
+.tweet-description p{
+    margin-left: 6px;
+    margin-top: 0px;
+    color: rgb(84, 82, 82);
+}
+
+.tweet-photo{
+    width: 370px;
+    height: 420px;
+    border-radius: 10px;
+}
+
+.tweet-icons-end{
+    display: flex;
+    padding: 0px;
+    margin-top: -5px;
+    width: 400px;
+    justify-content: space-between;
+    
+    align-items: end;
+}
+
+.tweet-icons-end img{
+    margin-bottom: -6px;
+    width: 19px;
+    margin-right: 5px;
+    cursor: pointer;
+    color: grey;
+    padding: 2px;
+   
+}
+
+.tweet-icons-end span{
+   color: grey;
+   font-size: 13px;
+   margin-bottom: 8px;
+   margin-left: 3px;
+   padding: 4px;
+   
+}
+
+.p-1:hover, .p-4:hover {
+    background-color: rgb(211, 245, 254);
+    border-radius: 9.5px;
+    transition:  background-color 0.3s ease;
+    
+}
+
+.p-2:hover{
+ background-color: rgb(153, 237, 176);
+    border-radius: 9.5px;
+    transition:  background-color 0.3s ease;
+}
+
+.p-3:hover{
+    background-color: rgb(248, 197, 225);
+       border-radius: 9.5px;
+       transition:  background-color 0.3s ease;
+   }
+
+.p-1:hover + .comment-num,
+.comment-num:hover + .p-1,
+.comment-num:hover {
+   
+    border-radius: 9.5px;
+    transition: background-color 0.3s ease;
+    color: rgb(15, 199, 245);
+}
+
+.p-2:hover + .repost-num,
+.repost-num:hover + .p-2,repost-num:hover {
+   
+    border-radius: 9.5px;
+    transition: background-color 0.3s ease;
+    color: rgb(66, 225, 108);
+}
+
+.p-3:hover + .like-num,
+.like-num:hover + .p-3,like-num:hover {
+   
+    border-radius: 9.5px;
+    transition: background-color 0.3s ease;
+    color: rgb(249, 16, 218);
+}
+
+.p-4:hover + .view-num,
+.view-num:hover + .p-4,
+.view-num:hover {
+   
+    border-radius: 9.5px;
+    transition: background-color 0.3s ease;
+    color: rgb(15, 199, 245);
+}
+
+.p-5:hover{
+    background-color: rgb(211, 245, 254);
+    border-radius: 9.5px;
+    transition: background-color 0.3s ease;
+    color: rgb(15, 199, 245);
+   
+}
+
+
+
+
+
+
+
+

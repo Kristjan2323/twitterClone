@@ -1,0 +1,457 @@
+
+.right-main-cont{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    margin-top: 12px;
+    margin-left: 20px;
+
+}
+
+.search-cont{
+   position: relative;
+  padding-top: 35px;
+  margin-left: 0px;
+ z-index: 0;
+}
+
+.search-cont input{
+    display: grid;
+    padding: 10px;
+    width: 281px;
+    opacity: 1;
+    border-radius: 45px;
+    border: none;
+    outline: none;
+    background-color: rgb(239, 238, 238);
+    justify-content: center;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.search-input-cont{
+    position: relative;
+    position: fixed;
+ 
+     margin-top: -34px;
+}
+
+.search-input::placeholder {
+    margin-left: 155px;
+    margin-bottom: -30px;
+    font-size: 14px;
+   text-align: center;
+}
+.search-cont img{
+    position: fixed;   
+    position: absolute; 
+    width: 16px;
+    right: 265px;
+    top: 10.5px;
+    color: grey;
+}
+
+.subscribe-cont{
+    margin-top: 14px;
+    border-radius: 15px;
+    background-color:rgb(239, 238, 238); 
+    padding: 12px;
+    height: 100px;
+    width: 280px;
+}
+
+
+.subscribe-cont p{
+  margin-top: -5px;
+}
+
+.subsc-title{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 13px;
+
+}
+
+.subsc-text{
+   font-weight: 500;
+   margin-bottom: 10px;
+   
+}
+
+.btn-subsc{
+    padding: 6px;
+    width: 92px;
+    border-radius: 13px;
+    background-color: black;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.trends-cont{
+    margin-top: 12px;
+    background-color:rgb(239, 238, 238); 
+    height: 745px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 8px;
+    padding-bottom: 8px; 
+    border-radius: 8px;
+}
+
+.trends{
+    display: flex;
+    justify-content: space-between;
+    align-items:normal;
+    padding  :5px;  
+    width: 280px;
+}
+
+.trends-form{
+    display: flex;
+    align-items: center;
+    margin-top: -2px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    width: 280px;
+    padding: 10px;
+    height: 60px;
+    margin-left: 0px;
+  
+}
+
+.trends-form:hover{
+    background-color: rgb(221, 214, 214);
+}
+
+.trends-left p{
+    margin-bottom: -12px;
+    font-size: 15px;
+}
+
+    .pt-1{
+    margin-top: -4px;
+    color: rgb(123, 118, 118);
+    }
+
+  .pt-2{
+    
+   font-weight: 700;
+   }
+
+   .pt-3{
+    color: rgb(123, 118, 118);
+   }
+
+   .trends-more{
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+  
+    margin-top: 1px;
+    margin-top: -30px;
+    margin-right: 6px;
+    font-size: 20px;
+    color: rgb(123, 118, 118);
+    height: 20px;
+    padding: 1px;
+    padding-bottom: 4px;
+    border-radius: 22px;
+   }
+
+   .floud-more{
+    position: absolute;
+    font-size: 11px;
+    background-color: rgb(80, 80, 80);
+    color: white;
+    padding: 1px;
+    top: 14px;
+    width: 28px;
+    text-align: center;
+    opacity: 0;
+   }
+
+   .trends-more:hover  .floud-more{
+    opacity: 1;
+    transition: opacity 1.5s;
+   }
+
+   .trends-more:hover {
+    background-color: rgb(178, 200, 200);
+   }
+   
+   
+   .trends-more p{
+     margin-top: 13px;
+   }
+
+   .trends-title{
+    margin-top: 1px;
+    font-size: 21px;
+    font-weight: 700;
+   }
+
+   .btn-showMore-cont{
+    display: flex;
+    height: 42px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color:rgb(239, 238, 238); 
+    cursor: pointer;
+   }
+
+   .btn-showMore-cont:hover{
+    background-color: rgb(221, 214, 214);
+   }
+
+   .btn-showMore-cont button{
+     border: none;
+     margin-left: 5px;
+     color: rgb(0, 157, 255);
+     background-color: transparent;
+   }
+
+   .main-whoToFollow-cont{
+    margin-top: 13px;
+    width: 300px;
+    height: 252px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 8px;
+    background-color:rgb(239, 238, 238); 
+   
+   }
+
+   .whoToFollow-cont{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+     margin-bottom: 10px;
+   }
+   
+   .whoToFollow-cont:hover{
+    background-color: rgb(221, 214, 214);
+   }
+
+   .whoToFollow-cont h3{
+    margin-top: 2px;
+    font-size: 20px;
+    font-weight: 900;
+   }
+
+   .whoToFollow-profile-pic img{
+    width:36px;
+    border-radius: 18px;
+    margin-left: 7px;
+   }
+
+   .whoToFollow-left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+   }
+
+   .toFollow-verif-sign{
+    width: 16px;
+    background-color: transparent;
+   }
+
+   .whoToFollow-details{
+    margin-left: 8px;
+   }
+
+   .whoToFollow-details p{
+    margin-bottom: 0px;
+   }
+
+   .toFollow-p2{
+    margin-top: 1px;
+    font-size: 14px;
+    color: gray;
+   }
+
+   .toFollow-p1{
+    margin-top: -9px;
+    font-weight: 700;
+   }
+
+   .whoToFollow-right{
+    margin-bottom: -10px;
+   }
+
+   .whoToFollow-right button{
+    padding: 8px;
+    width: 75px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 15px;
+    background-color: black;
+    color: aliceblue;
+    font-weight: 600;
+   }
+
+   .main-whoToFollow-cont h3{
+    margin-left: 10px;
+   }
+
+   @media only screen and (max-width : 1080px){
+     
+    .top-cont{
+        display: grid;
+        grid-template-columns: 50px 600px 250px;
+        justify-content: center;
+        gap: 1px;
+       }
+       .right-main-cont{
+        width: 200px;
+       }
+
+       .main-whoToFollow-cont{
+        margin-top: 13px;
+        width: 240px;
+        height: 252px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 8px;
+        background-color:rgb(239, 238, 238); 
+       
+       }
+       .main-whoToFollow-cont h3{
+        margin-left: 10px;
+       }
+
+       .search-cont input{
+      
+       width: 220px;
+      
+     }
+      
+     .trends-form{
+        width: 230px;
+        padding: 5px;
+     }
+     .subscribe-cont{
+        margin-top: 14px;
+        border-radius: 15px;
+        background-color:rgb(239, 238, 238); 
+        padding: 12px;
+        height: 105px;
+        width: 218px;
+    }
+
+    .trends-cont{
+        margin-top: 19px;
+        background-color:rgb(239, 238, 238); 
+        height:auto;
+       
+        padding-top: 8px;
+        padding-bottom: 0px; 
+        border-radius: 8px;
+        width: 240px;
+    }
+
+    .subsc-title{
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    
+    }
+
+    .subsc-text{
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 14px;
+     }
+
+     .btn-subsc{
+        padding: 5px;
+        width: 82px;
+        border-radius: 13px;
+        background-color: black;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .main-whoToFollow-cont{
+        height: auto;
+        padding-bottom: 0px;
+       
+    }
+ 
+       .whoToFollow-profile-pic img{
+        width:32px;
+        border-radius: 16px;
+        margin-left: 7px;
+       }
+    
+       .whoToFollow-left{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        padding-top: 4px;
+        
+       }
+    
+       .toFollow-verif-sign{
+        width: 12px;
+        background-color: transparent;
+       }
+    
+       .whoToFollow-details{
+        margin-left: 8px;
+       }
+    
+       .whoToFollow-details p{
+        margin-bottom: 0px;
+       }
+    
+       .toFollow-p2{
+        margin-top: 1px;
+        font-size: 13px;
+        color: gray;
+       }
+    
+       .toFollow-p1{
+        font-size: 13px;
+        margin-top: -9px;
+        font-weight: 700;
+       }
+    
+       .whoToFollow-right button{
+        padding: 5px;
+        width: 60px;
+        margin-top: -10px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 15px;
+        background-color: black;
+        color: aliceblue;
+        font-weight:bold;
+        font-size: 12px;
+        
+       }
+
+
+   }
+
+   @media only screen and (max-width : 988px){
+    .right-main-cont{
+       display: none;
+    }
+    .top-cont{
+        display: grid;
+        grid-template-columns: 50px 600px 0px;
+        justify-content: center;
+        gap: 1px;
+       }
+   }
+
+   

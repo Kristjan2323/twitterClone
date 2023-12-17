@@ -1,0 +1,439 @@
+
+<wsdl:definitions xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://mioa.gov.mk/interop/mim/v1" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://mioa.gov.mk/interop/mim/v1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="MimAuthPolicy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:EndorsingSupportingTokens xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <wsp:Policy>
+            <sp:SecureConversationToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:BootstrapPolicy>
+                  <wsp:Policy>
+                    <sp:SignedParts>
+                      <sp:Body />
+                      <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+                    </sp:SignedParts>
+                    <sp:EncryptedParts>
+                      <sp:Body />
+                    </sp:EncryptedParts>
+                    <sp:TransportBinding>
+                      <wsp:Policy>
+                        <sp:TransportToken>
+                          <wsp:Policy>
+                            <sp:HttpsToken />
+                          </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                          <wsp:Policy>
+                            <sp:Basic256 />
+                          </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                          <wsp:Policy>
+                            <sp:Strict />
+                          </wsp:Policy>
+                        </sp:Layout>
+                        <sp:IncludeTimestamp />
+                      </wsp:Policy>
+                    </sp:TransportBinding>
+                    <sp:EndorsingSupportingTokens>
+                      <wsp:Policy>
+                        <sp:IssuedToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+                          <Issuer xmlns="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+                            <Address xmlns="http://www.w3.org/2005/08/addressing">https://sts.interop.gov.mk/issue/wstrust/mixed/username</Address>
+                            <Metadata xmlns="http://www.w3.org/2005/08/addressing">
+                              <Metadata xmlns="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                <wsx:MetadataSection xmlns="">
+                                  <wsx:MetadataReference>
+                                    <Address xmlns="http://www.w3.org/2005/08/addressing">https://sts.interop.gov.mk/issue/wstrust/mex</Address>
+                                    <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+                                      <Dns>sts.interop.mk signing</Dns>
+                                    </Identity>
+                                  </wsx:MetadataReference>
+                                </wsx:MetadataSection>
+                              </Metadata>
+                            </Metadata>
+                          </Issuer>
+                          <sp:RequestSecurityTokenTemplate>
+                            <trust:KeyType xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://docs.oasis-open.org/ws-sx/ws-trust/200512/SymmetricKey</trust:KeyType>
+                            <trust:KeySize xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">256</trust:KeySize>
+                            <trust:KeyWrapAlgorithm xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p</trust:KeyWrapAlgorithm>
+                            <trust:EncryptWith xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://www.w3.org/2001/04/xmlenc#aes256-cbc</trust:EncryptWith>
+                            <trust:SignWith xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://www.w3.org/2000/09/xmldsig#hmac-sha1</trust:SignWith>
+                            <trust:CanonicalizationAlgorithm xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://www.w3.org/2001/10/xml-exc-c14n#</trust:CanonicalizationAlgorithm>
+                            <trust:EncryptionAlgorithm xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://www.w3.org/2001/04/xmlenc#aes256-cbc</trust:EncryptionAlgorithm>
+                          </sp:RequestSecurityTokenTemplate>
+                          <wsp:Policy>
+                            <sp:RequireInternalReference />
+                          </wsp:Policy>
+                        </sp:IssuedToken>
+                      </wsp:Policy>
+                    </sp:EndorsingSupportingTokens>
+                    <sp:Wss11>
+                      <wsp:Policy />
+                    </sp:Wss11>
+                    <sp:Trust13>
+                      <wsp:Policy>
+                        <sp:MustSupportIssuedTokens />
+                        <sp:RequireClientEntropy />
+                        <sp:RequireServerEntropy />
+                      </wsp:Policy>
+                    </sp:Trust13>
+                  </wsp:Policy>
+                </sp:BootstrapPolicy>
+                <sp:MustNotSendAmend />
+              </wsp:Policy>
+            </sp:SecureConversationToken>
+          </wsp:Policy>
+        </sp:EndorsingSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <wsp:Policy />
+        </sp:Wss11>
+        <sp:Trust13 xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust13>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://mioa.gov.mk/interop/mim/v1">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="ReceiveAdministrativeProcedureServiceXmlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDocument">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="uniqueId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="responseType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReceiveAdministrativeProcedureServiceXmlResponseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ReceiveAdministrativeProcedureServiceXmlResponseResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MIMHeader" type="tns:MIMHeader" />
+      <s:complexType name="MIMHeader">
+        <s:all>
+          <s:element minOccurs="0" maxOccurs="1" name="Consumer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Provider" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionId" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="CorrelationID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" fixed="NP" name="RoutingToken" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" fixed="NationalPortalIntegrationServiceStage" name="Service" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" fixed="1" name="TestService" type="s:boolean" />
+        </s:all>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="ReceiveAdministrativeProcedureServiceDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="documentContent" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="uniqueId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReceiveAdministrativeProcedureServiceDocumentResponseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ReceiveAdministrativeProcedureServiceDocumentResponseResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApsResponseAcceptance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uniqueId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApsResponseAcceptanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetApsResponseAcceptanceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReceiveAdministrativeProcedureServiceElectronicDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="documentContent" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="uniqueId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="responseType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReceiveAdministrativeProcedureServiceElectronicDocumentResponseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ReceiveAdministrativeProcedureServiceElectronicDocumentResponseResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProvideApplicationAdditionalProofs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="proofs" type="tns:ProvideAdditionalProofDocumentsViwModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProvideAdditionalProofDocumentsViwModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ReplaceApsApplicationProofDocumentsIds" type="tns:ArrayOfStringValue" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProvideAdditionalProofDocumentTypeIds" type="tns:ArrayOfStringValue" />
+          <s:element minOccurs="0" maxOccurs="1" name="CorrelationId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfStringValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StringValue" nillable="true" type="tns:StringValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StringValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ProvideApplicationAdditionalProofsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetApsAdditionalDeliveryInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uniqueId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApsAdditionalDeliveryInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetApsAdditionalDeliveryInfoResult" type="tns:AdditionalApsDeliveryViewModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AdditionalApsDeliveryViewModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AdditionalDeliveryType" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdditionalDeliveryTypeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InstitutionId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstitutionName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MunicipalityId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MunicipalityName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SettlementId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SettlementName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryEmail" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ReceiveAdministrativeProcedureServiceXmlResponseSoapIn">
+    <wsdl:part name="parameters" element="tns:ReceiveAdministrativeProcedureServiceXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReceiveAdministrativeProcedureServiceXmlResponseSoapOut">
+    <wsdl:part name="parameters" element="tns:ReceiveAdministrativeProcedureServiceXmlResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReceiveAdministrativeProcedureServiceXmlResponseMIMHeader">
+    <wsdl:part name="MIMHeader" element="tns:MIMHeader" />
+  </wsdl:message>
+  <wsdl:message name="ReceiveAdministrativeProcedureServiceDocumentResponseSoapIn">
+    <wsdl:part name="parameters" element="tns:ReceiveAdministrativeProcedureServiceDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReceiveAdministrativeProcedureServiceDocumentResponseSoapOut">
+    <wsdl:part name="parameters" element="tns:ReceiveAdministrativeProcedureServiceDocumentResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReceiveAdministrativeProcedureServiceDocumentResponseMIMHeader">
+    <wsdl:part name="MIMHeader" element="tns:MIMHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetApsResponseAcceptanceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetApsResponseAcceptance" />
+  </wsdl:message>
+  <wsdl:message name="GetApsResponseAcceptanceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetApsResponseAcceptanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetApsResponseAcceptanceMIMHeader">
+    <wsdl:part name="MIMHeader" element="tns:MIMHeader" />
+  </wsdl:message>
+  <wsdl:message name="ReceiveAdministrativeProcedureServiceElectronicDocumentResponseSoapIn">
+    <wsdl:part name="parameters" element="tns:ReceiveAdministrativeProcedureServiceElectronicDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReceiveAdministrativeProcedureServiceElectronicDocumentResponseSoapOut">
+    <wsdl:part name="parameters" element="tns:ReceiveAdministrativeProcedureServiceElectronicDocumentResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReceiveAdministrativeProcedureServiceElectronicDocumentResponseMIMHeader">
+    <wsdl:part name="MIMHeader" element="tns:MIMHeader" />
+  </wsdl:message>
+  <wsdl:message name="ProvideApplicationAdditionalProofsSoapIn">
+    <wsdl:part name="parameters" element="tns:ProvideApplicationAdditionalProofs" />
+  </wsdl:message>
+  <wsdl:message name="ProvideApplicationAdditionalProofsSoapOut">
+    <wsdl:part name="parameters" element="tns:ProvideApplicationAdditionalProofsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProvideApplicationAdditionalProofsMIMHeader">
+    <wsdl:part name="MIMHeader" element="tns:MIMHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetApsAdditionalDeliveryInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetApsAdditionalDeliveryInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetApsAdditionalDeliveryInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetApsAdditionalDeliveryInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetApsAdditionalDeliveryInfoMIMHeader">
+    <wsdl:part name="MIMHeader" element="tns:MIMHeader" />
+  </wsdl:message>
+  <wsdl:portType name="NationalPortalServiceSoap">
+    <wsdl:operation name="ReceiveAdministrativeProcedureServiceXmlResponse">
+      <wsdl:input message="tns:ReceiveAdministrativeProcedureServiceXmlResponseSoapIn" />
+      <wsdl:output message="tns:ReceiveAdministrativeProcedureServiceXmlResponseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveAdministrativeProcedureServiceDocumentResponse">
+      <wsdl:input message="tns:ReceiveAdministrativeProcedureServiceDocumentResponseSoapIn" />
+      <wsdl:output message="tns:ReceiveAdministrativeProcedureServiceDocumentResponseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApsResponseAcceptance">
+      <wsdl:input message="tns:GetApsResponseAcceptanceSoapIn" />
+      <wsdl:output message="tns:GetApsResponseAcceptanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveAdministrativeProcedureServiceElectronicDocumentResponse">
+      <wsdl:input message="tns:ReceiveAdministrativeProcedureServiceElectronicDocumentResponseSoapIn" />
+      <wsdl:output message="tns:ReceiveAdministrativeProcedureServiceElectronicDocumentResponseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProvideApplicationAdditionalProofs">
+      <wsdl:input message="tns:ProvideApplicationAdditionalProofsSoapIn" />
+      <wsdl:output message="tns:ProvideApplicationAdditionalProofsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApsAdditionalDeliveryInfo">
+      <wsdl:input message="tns:GetApsAdditionalDeliveryInfoSoapIn" />
+      <wsdl:output message="tns:GetApsAdditionalDeliveryInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NationalPortalServiceSoap12" type="tns:NationalPortalServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsp:PolicyReference URI="#MimAuthPolicy" />
+    <wsdl:operation name="ReceiveAdministrativeProcedureServiceXmlResponse">
+      <soap12:operation soapAction="http://mioa.gov.mk/interop/mim/v1/ReceiveAdministrativeProcedureServiceXmlResponse" style="document" />
+      <soap12:operation soapAction="" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ReceiveAdministrativeProcedureServiceXmlResponseMIMHeader" part="MIMHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ReceiveAdministrativeProcedureServiceXmlResponseMIMHeader" part="MIMHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveAdministrativeProcedureServiceDocumentResponse">
+      <soap12:operation soapAction="http://mioa.gov.mk/interop/mim/v1/ReceiveAdministrativeProcedureServiceDocumentResponse" style="document" />
+      <soap12:operation soapAction="" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ReceiveAdministrativeProcedureServiceDocumentResponseMIMHeader" part="MIMHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ReceiveAdministrativeProcedureServiceDocumentResponseMIMHeader" part="MIMHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApsResponseAcceptance">
+      <soap12:operation soapAction="http://mioa.gov.mk/interop/mim/v1/GetApsResponseAcceptance" style="document" />
+      <soap12:operation soapAction="" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetApsResponseAcceptanceMIMHeader" part="MIMHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetApsResponseAcceptanceMIMHeader" part="MIMHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveAdministrativeProcedureServiceElectronicDocumentResponse">
+      <soap12:operation soapAction="http://mioa.gov.mk/interop/mim/v1/ReceiveAdministrativeProcedureServiceElectronicDocumentResponse" style="document" />
+      <soap12:operation soapAction="" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ReceiveAdministrativeProcedureServiceElectronicDocumentResponseMIMHeader" part="MIMHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ReceiveAdministrativeProcedureServiceElectronicDocumentResponseMIMHeader" part="MIMHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProvideApplicationAdditionalProofs">
+      <soap12:operation soapAction="http://mioa.gov.mk/interop/mim/v1/ProvideApplicationAdditionalProofs" style="document" />
+      <soap12:operation soapAction="" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ProvideApplicationAdditionalProofsMIMHeader" part="MIMHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ProvideApplicationAdditionalProofsMIMHeader" part="MIMHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApsAdditionalDeliveryInfo">
+      <soap12:operation soapAction="http://mioa.gov.mk/interop/mim/v1/GetApsAdditionalDeliveryInfo" style="document" />
+      <soap12:operation soapAction="" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetApsAdditionalDeliveryInfoMIMHeader" part="MIMHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetApsAdditionalDeliveryInfoMIMHeader" part="MIMHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NationalPortalService">
+    <wsdl:port name="NationalPortalServiceSoap12" binding="tns:NationalPortalServiceSoap12">
+      <soap:address location="https://rkecc.interop.gov.mk/Consumer/Service.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

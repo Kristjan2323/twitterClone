@@ -1,0 +1,260 @@
+
+<wsdl:definitions xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://mioa.gov.mk/interop/mim/v1" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://mioa.gov.mk/interop/mim/v1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="MimAuthPolicy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:EndorsingSupportingTokens xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <wsp:Policy>
+            <sp:SecureConversationToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:BootstrapPolicy>
+                  <wsp:Policy>
+                    <sp:SignedParts>
+                      <sp:Body />
+                      <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+                    </sp:SignedParts>
+                    <sp:EncryptedParts>
+                      <sp:Body />
+                    </sp:EncryptedParts>
+                    <sp:TransportBinding>
+                      <wsp:Policy>
+                        <sp:TransportToken>
+                          <wsp:Policy>
+                            <sp:HttpsToken />
+                          </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                          <wsp:Policy>
+                            <sp:Basic256 />
+                          </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                          <wsp:Policy>
+                            <sp:Strict />
+                          </wsp:Policy>
+                        </sp:Layout>
+                        <sp:IncludeTimestamp />
+                      </wsp:Policy>
+                    </sp:TransportBinding>
+                    <sp:EndorsingSupportingTokens>
+                      <wsp:Policy>
+                        <sp:IssuedToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+                          <Issuer xmlns="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+                            <Address xmlns="http://www.w3.org/2005/08/addressing">https://sts.interop.gov.mk/issue/wstrust/mixed/username</Address>
+                            <Metadata xmlns="http://www.w3.org/2005/08/addressing">
+                              <Metadata xmlns="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                <wsx:MetadataSection xmlns="">
+                                  <wsx:MetadataReference>
+                                    <Address xmlns="http://www.w3.org/2005/08/addressing">https://sts.interop.gov.mk/issue/wstrust/mex</Address>
+                                    <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+                                      <Dns>sts.interop.mk signing</Dns>
+                                    </Identity>
+                                  </wsx:MetadataReference>
+                                </wsx:MetadataSection>
+                              </Metadata>
+                            </Metadata>
+                          </Issuer>
+                          <sp:RequestSecurityTokenTemplate>
+                            <trust:KeyType xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://docs.oasis-open.org/ws-sx/ws-trust/200512/SymmetricKey</trust:KeyType>
+                            <trust:KeySize xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">256</trust:KeySize>
+                            <trust:KeyWrapAlgorithm xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p</trust:KeyWrapAlgorithm>
+                            <trust:EncryptWith xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://www.w3.org/2001/04/xmlenc#aes256-cbc</trust:EncryptWith>
+                            <trust:SignWith xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://www.w3.org/2000/09/xmldsig#hmac-sha1</trust:SignWith>
+                            <trust:CanonicalizationAlgorithm xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://www.w3.org/2001/10/xml-exc-c14n#</trust:CanonicalizationAlgorithm>
+                            <trust:EncryptionAlgorithm xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://www.w3.org/2001/04/xmlenc#aes256-cbc</trust:EncryptionAlgorithm>
+                          </sp:RequestSecurityTokenTemplate>
+                          <wsp:Policy>
+                            <sp:RequireInternalReference />
+                          </wsp:Policy>
+                        </sp:IssuedToken>
+                      </wsp:Policy>
+                    </sp:EndorsingSupportingTokens>
+                    <sp:Wss11>
+                      <wsp:Policy />
+                    </sp:Wss11>
+                    <sp:Trust13>
+                      <wsp:Policy>
+                        <sp:MustSupportIssuedTokens />
+                        <sp:RequireClientEntropy />
+                        <sp:RequireServerEntropy />
+                      </wsp:Policy>
+                    </sp:Trust13>
+                  </wsp:Policy>
+                </sp:BootstrapPolicy>
+                <sp:MustNotSendAmend />
+              </wsp:Policy>
+            </sp:SecureConversationToken>
+          </wsp:Policy>
+        </sp:EndorsingSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <wsp:Policy />
+        </sp:Wss11>
+        <sp:Trust13 xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust13>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://mioa.gov.mk/interop/mim/v1">
+      <s:element name="CreateLicence">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicantData" type="tns:applicantData" />
+            <s:element minOccurs="0" maxOccurs="1" name="contact" type="tns:contact" />
+            <s:element minOccurs="0" maxOccurs="1" name="licence" type="tns:licence" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="applicantData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nameofBusiness" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="headquartersAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mailaddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EMBS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EDB" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="contact">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="surname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mailpersonAuthorized" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="licence">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="timeperiod" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="companiesAndParticipation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="note" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="dateOfApplication" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="licenseRecordnumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="energyActivityForWhichIssuanceIsRequested" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="energyActivityForWhichLicenseIsRequired" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="typeOfLicenseElectricityProduction" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numberOfConsumersinTheirHomeland" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="recordnumberForwhichTerminationIsRequested" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="energyActivityForWhichisTransferred" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateLicenceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateLicenceResult" type="tns:Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Response">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UniqueIdentification" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceRequestNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceRequestYear" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <xs:schema xmlns:b="http://schemas.microsoft.com/BizTalk/2003" xmlns="http://mioa.gov.mk/interop/mim/v1" elementFormDefault="qualified" targetNamespace="http://mioa.gov.mk/interop/mim/v1" id="MimConsumerHeaderSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="MIMHeader">
+        <xs:complexType>
+          <xs:all minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="1" maxOccurs="1" fixed="RKE" name="RoutingToken">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>
+                //todo: documentation
+              </xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" name="CorrelationID" type="xs:string" />
+            <xs:element minOccurs="1" maxOccurs="1" fixed="ERC24PGSNAB" name="Service">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="50" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="TransactionId">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="\{[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}\}" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" fixed="true" name="TestService" type="xs:boolean" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateLicenceSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateLicence" />
+  </wsdl:message>
+  <wsdl:message name="CreateLicenceSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateLicenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="MIMHeader">
+    <wsdl:part name="MIMHeader" element="tns:MIMHeader" />
+  </wsdl:message>
+  <wsdl:portType name="ERC25PGSNABSoap">
+    <wsdl:operation name="CreateLicence">
+      <wsdl:input message="tns:CreateLicenceSoapIn" />
+      <wsdl:output message="tns:CreateLicenceSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ERC25PGSNABSoap12" type="tns:ERC25PGSNABSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsp:PolicyReference URI="#MimAuthPolicy" />
+    <wsdl:operation name="CreateLicence">
+      <soap12:operation soapAction="http://mioa.gov.mk/interop/mim/v1/CreateLicence" style="document" />
+      <soap12:operation soapAction="" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:MIMHeader" part="MIMHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:MIMHeader" part="MIMHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ERC25PGSNAB">
+    <wsdl:port name="ERC25PGSNABSoap12" binding="tns:ERC25PGSNABSoap12">
+      <soap:address location="https://rkecc.interop.gov.mk/Consumer/Service.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
